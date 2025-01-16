@@ -12,22 +12,29 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      background-color: #f9f9f9;
+      background-color: #f4f4f9;
     }
-    #calendar {
-      max-width: 900px;
-      margin: 20px auto;
+    #calendar-container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 40px auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      background: #fff;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      color: #333;
     }
   </style>
 </head>
 <body>
   <h1>Event Calendar</h1>
-  <div id="calendar"></div>
+  <div id="calendar-container">
+    <div id="calendar"></div>
+  </div>
 
   <!-- FullCalendar JS -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
@@ -45,15 +52,19 @@
         selectable: true,
         events: [
           {
-            title: 'Example Event',
-            start: new Date().toISOString().slice(0, 10),
+            title: 'Sample Event',
+            start: '2025-01-15',
+          },
+          {
+            title: 'Another Event',
+            start: '2025-01-20',
           }
         ],
         dateClick: function(info) {
-          const eventTitle = prompt('Enter Event Title:');
-          if (eventTitle) {
+          const title = prompt('Enter event title:');
+          if (title) {
             calendar.addEvent({
-              title: eventTitle,
+              title: title,
               start: info.dateStr,
               allDay: true
             });
@@ -66,4 +77,3 @@
   </script>
 </body>
 </html>
-
